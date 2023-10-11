@@ -89,19 +89,49 @@ function balancedTree (rootNode) {
   return balancedTree(rootNode.left) && balancedTree(rootNode.right)
 }
 
-function countNodes (rootNode) {
-  // Your code here
+const countNodes = (rootNode) => !rootNode ? 0 : (countNodes(rootNode.left)) + (countNodes(rootNode.right)) + 1
+// function countNodes (rootNode) {
+//   if(!rootNode) {
+//     return 0
+//   } else {
+//     return (countNodes(rootNode.left)) + (countNodes(rootNode.right)) + 1
+//   }
+
+// }
+
+function getParentNode(node, target) {
+  if (node === null) {
+    return null;
+  }
+
+  let parent = null;
+
+  while (node !== null) {
+    if (node.val === target) {
+      return parent;
+    } else if (node.val > target) {
+      parent = node;
+      node = node.left;
+    } else {
+      parent = node;
+      node = node.right;
+    }
+  }
+
+  return undefined;
 }
 
-function getParentNode (rootNode, target) {
-  // Your code here
-}
+function inOrderPredecessor (rootNode, target, predecessor = null ) {
+  if (!rootNode) return predecessor
+  else if (rootNode.val >= target) return inOrderPredecessor(rootNode.left, target, predecessor)
+  else return inOrderPredecessor(rootNode.right, target, rootNode.val)
 
-function inOrderPredecessor (rootNode, target) {
-  // Your code here
 }
 
 function deleteNodeBST(rootNode, target) {
+  if(!rootNode) {
+    return true
+  }
   // Do a traversal to find the node. Keep track of the parent
 
   // Undefined if the target cannot be found
