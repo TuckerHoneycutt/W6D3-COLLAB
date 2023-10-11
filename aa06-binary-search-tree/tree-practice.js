@@ -46,22 +46,31 @@ function findMaxBT (rootNode) {
   if (!rootNode) {
     return null
   }
-  let minVal = rootNode.val
-  let leftMin = findMinBT(rootNode.left)
-  let rightMin = findMinBT(rootNode.right)
+  let maxVal = rootNode.val
+  let leftMax = findMaxBT(rootNode.left)
+  let rightMax = findMaxBT(rootNode.right)
 
-  if (leftMin < minVal && leftMin !== null) {
-    minVal = leftMin
+  if (leftMax > maxVal && leftMax !== null) {
+    maxVal = leftMax
   }
-  if (rightMin < minVal && rightMin !== null) {
-    minVal = rightMin
+  if (rightMax > maxVal && rightMax !== null) {
+    maxVal = rightMax
   }
-
-  return minVal
+7
+  return maxVal
 }
 
 function getHeight (rootNode) {
-  // Your code here
+  if(!rootNode) {
+    return -1
+  } else {
+    let leftHeight = getHeight(rootNode.left)
+    let rightHeight = getHeight(rootNode.right)
+    if (leftHeight >= rightHeight) return leftHeight + 1
+    else if (leftHeight && rightHeight === null) return 0
+    else return rightHeight + 1
+  }
+
 }
 
 function balancedTree (rootNode) {
