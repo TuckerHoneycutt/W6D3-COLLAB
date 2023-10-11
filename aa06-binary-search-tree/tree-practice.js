@@ -121,6 +121,8 @@ function getParentNode(node, target) {
   return undefined;
 }
 
+
+// const inOrderPredecessor = (rootNode, target, predecessor = null) => !rootNode ? predecessor : rootNode.val >= target ? inOrderPredecessor(rootNode.left, target, predecessor) : inOrderPredecessor(rootNode.right, target, rootNode.val)
 function inOrderPredecessor (rootNode, target, predecessor = null ) {
   if (!rootNode) return predecessor
   else if (rootNode.val >= target) return inOrderPredecessor(rootNode.left, target, predecessor)
@@ -130,9 +132,15 @@ function inOrderPredecessor (rootNode, target, predecessor = null ) {
 
 function deleteNodeBST(rootNode, target) {
   if(!rootNode) {
-    return true
+    return null
   }
+
+  let parent = null
+  let node = rootNode
   // Do a traversal to find the node. Keep track of the parent
+  while (node && node.val !== target) {
+
+  }
 
   // Undefined if the target cannot be found
 
